@@ -1,0 +1,81 @@
+
+
+###เพิ่มข้อมูลที่นั่งรถไฟของตู้ traincar_id =2 กรณีนี้ให้ A1,A2,A3
+###เป็นเลขที่นั่งรถไฟของเที่ยว route_id = 1
+POST http://localhost:8000/routeseatdetails/
+Content-Type: application/json
+
+[
+  {
+    "routedetail_id": "1",
+    "traincar_id": "2",
+    "traincarseat_id": "A1",
+    "seat_status": "available"
+  },
+  {
+    "routedetail_id": "1",
+    "traincar_id": "2",
+    "traincarseat_id": "A2",
+    "seat_status": "available"
+  },
+  {
+    "routedetail_id": "1",
+    "traincar_id": "2",
+    "traincarseat_id": "A3",
+    "seat_status": "available"
+  }
+]
+
+### เรียกดูสถานะที่นั่ง
+GET http://localhost:8000/routeseatdetails/
+
+
+###จองที่งนั่งโดยใช้รายการซื้อตั๋ว
+POST http://localhost:8000/seatorders/
+Content-Type: application/json
+
+[
+  {
+    "ticket_id": "1",
+    "traincarseat_id": "A1"
+  },
+  {
+    "ticket_id": "1",
+    "traincarseat_id": "A2"
+  }
+]
+
+###
+GET http://localhost:8000/seatorders/
+
+### update statusที่นั่ง
+PUT http://localhost:8000/routeseatdetails/A1
+Content-Type: application/json
+
+{
+  "routedetail_id": "1",
+  "traincar_id": "2",
+  "traincarseat_id": "A1",
+  "seat_status": "Not available"
+}
+
+### update statusที่นั่ง
+PUT http://localhost:8000/routeseatdetails/A2
+Content-Type: application/json
+
+{
+  "routedetail_id": "1",
+  "traincar_id": "2",
+  "traincarseat_id": "A2",
+  "seat_status": "Not available"
+}
+
+
+
+### เรียกดูสถานะที่นั่งอีกครั่ง
+GET http://localhost:8000/routeseatdetails/
+
+###โจทย์ ข้อ4
+###เรียกดูการจองที่นั่ง เลขที่นั่ง เที่ยวรถไฟ และประเภทตู้รถไฟ ของ order_id = 1
+GET http://localhost:8000/seatorderdetail/1
+

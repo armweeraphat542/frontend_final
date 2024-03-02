@@ -1,0 +1,47 @@
+###
+POST http://localhost:8000/customers/
+Content-Type: application/json
+
+[
+  {
+    "cust_id": "1",
+    "cust_name": "Gygee"
+  }
+]
+
+###จองตั๋ว
+
+POST http://localhost:8000/ticketorders/
+Content-Type: application/json
+
+[
+  {
+    "ticket_id": "1",
+    "cust_id": "1",
+    "route_id": "1",
+    "traincar_id": "2",
+    "order_date": "15/03/67",
+    "order_quan": 2,
+    "price": 500
+  },
+  {
+    "ticket_id": "2",
+    "cust_id": "1",
+    "route_id": "2",
+    "traincar_id": "1",
+    "order_date": "18/03/67",
+    "order_quan": 1,
+    "price": 200
+  }
+]
+
+###ดูรายการจองตั๋วทั้งหมด
+GET http://localhost:8000/ticketorders/
+
+
+###โจทย์ ข้อ3
+###แสดงออเดอร์ตั๋ว เที่ยวรถไฟ วันที่ออก ประเภทตู้และจำนวน
+GET http://localhost:8000/ticketorderdetails/
+
+### แสดงออเดอร์ตั๋ว เที่ยวรถไฟ วันที่ออก ประเภทตู้และจำนวน ของ order_id = 1
+GET http://localhost:8000/ticketorderdetail/1

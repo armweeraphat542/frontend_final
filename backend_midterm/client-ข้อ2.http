@@ -1,0 +1,76 @@
+###ให้เส้นทางขวบนรถไฟ rute_id = 1 เป็นขบวนตัวอย่าง
+
+
+###เพิ่มประเภทตู้โดยสาร
+POST http://localhost:8000/traincars/
+Content-Type: application/json
+
+[
+  {
+    "traincar_id": "1",
+    "traincar_name": "รถนั่งและนอนปรับอากาศชั้น 1 (CNR)",
+    "traincar_seatpercar": 24
+  },
+  {
+    "traincar_id": "2",
+    "traincar_name": "รถนั่งและนอนปรับอากาศชั้น 2 (CNR)",
+    "traincar_seatpercar": 40
+  },
+  {
+    "traincar_id": "3",
+    "traincar_name": "รถโบกี้ชั้นที่ 3 ( บชส.)",
+    "traincar_seatpercar": 76
+  }
+]
+
+####
+GET  http://localhost:8000/traincars/
+
+
+###ใส่detail ตู้รถไฟในขบวนแต่ละเที่ยว เหตุผลที่ไม่ใส่จำนวนตู้ผูกไว้ใน train 
+###  เพื่อความ felxible เพราะแต่ละเที่ยวเดินรถมีกรณีที่พ่วงรถไม่เต็มริ้วขบวน
+POST http://localhost:8000/routedetails/
+Content-Type: application/json
+
+[
+    {
+      "routedetail_id": "1",
+      "route_id": "1",
+      "traincar_id": "2",
+      "traincar_quan": 2
+    },
+    {
+      "routedetail_id": "2",
+      "route_id": "1",
+      "traincar_id": "3",
+      "traincar_quan": 4
+    },
+    {
+      "routedetail_id": "3",
+      "route_id": "2",
+      "traincar_id": "1",
+      "traincar_quan": 5
+    },
+    {
+      "routedetail_id": "2",
+      "route_id": "2",
+      "traincar_id": "2",
+      "traincar_quan": 5
+    }
+]
+
+
+###
+GET http://localhost:8000/routedetails/
+
+
+###โจทย์ ข้อ2
+
+###แสดงตู้จำนวนตู้ทั้งหมดในแต่ละเที่ยวเดินรถ
+GET http://localhost:8000/routetraincarsums/
+
+### แสดงตู้จำนวนตู้ทั้งหมดในขบวนเดินรถ ของ route_id=1
+GET http://localhost:8000/routetraincarsum/1
+
+###แสดง เที่ยวการเดินทางรถ ขบวนรถไฟ ชื่อตู้รถไฟ จำนวนตู้ประเภทนั้นๆและจำนวนที่นั่งแต่ละตู้ ของ route_id = 1
+GET http://localhost:8000/routetraincardetail/1
