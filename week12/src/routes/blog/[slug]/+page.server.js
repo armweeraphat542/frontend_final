@@ -1,8 +1,11 @@
 import { error } from "@sveltejs/kit";
-import { posts } from "../data"
+import { create } from "domain";
 
-export function load({ params }) {
-    const post = posts.find((post) => post.slug === params.slug)
+export async function load({params}) {
+    const res = await fetch(`http://localhost:3000/posts?slug=${params.slug}`)
+    const posts = await res.json()
+    const post = posts[0]
+    console.log(post)
 
     if (!post) throw error(404)
 
@@ -10,3 +13,4 @@ export function load({ params }) {
         post
     }
 }
+

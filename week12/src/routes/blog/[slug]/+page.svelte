@@ -41,6 +41,16 @@
                 <i class="fas fa-thumbs-down" aria-hidden="true"></i>
             </span>
         </button>
+        
+        <form method="POST" action="/blog?/delete">
+            <input type="hidden" name="id" value={data.post.id}>
+            <button class="button" type="submit">
+                <span class="icon is-small" >
+                    <i class="fas fa-exclamation-triangle"></i>
+                </span>
+            </button>
+        </form>
+
     </div>
 
 </div>
