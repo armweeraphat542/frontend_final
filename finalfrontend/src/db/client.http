@@ -1,0 +1,27 @@
+###
+GET http://localhost:3000/bookings
+
+###
+GET http://localhost:3000/trains
+###
+DELETE http://localhost:3000/bookings/b48b
+
+
+###
+GET http://localhost:3000/posts
+###
+POST http://localhost:3000/bookings/
+Content-Type: application/json
+
+{
+    "name" : "arm",
+    "contactNumber": "123456",
+    "trainNumber": "EXP001",
+    "departure": "Bangkok",
+    "arrival": "Chiangmai",
+    "time": "9.00 น"
+}
+
+
+###
+GET http://localhost:3000/trains
